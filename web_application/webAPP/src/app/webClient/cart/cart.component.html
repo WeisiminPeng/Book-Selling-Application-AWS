@@ -1,0 +1,69 @@
+<p>cart works!</p>
+<app-sidebar></app-sidebar>
+
+<div class="maincontent">
+    <div class="module-title">
+        <div class="title">Cart List</div>
+        <div class="underline">
+            <hr style="color: #595959">
+        </div>
+    </div>
+    <div class="specialization-detail-wrapper">
+        <div class='patient-schedule'>
+            <div class='book-item' *ngFor="let data of books">
+                <div class="book-detail">
+                    <div class="book-info">
+                        <div class="book-overview">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <!-- <div *ngFor='let image of data.imageStringList'> -->
+                                                <img *ngFor='let image of data.imageStringList' [src]="image"
+                                                    height="200px" style="margin: 3px;"> <br />
+                                            <!-- </div> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Title:</td>
+                                        <td class="info">{{data.Title}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">ISBN:</td>
+                                        <td class="info">{{data.ISBN}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Authors:</td>
+                                        <td class="info">{{data.Authors}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">PublicationDate:</td>
+                                        <td class="info">
+                                            {{getPublicationDate(data.PublicationDate)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Quantity:</td>
+                                        <td class="info">1 </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Price:</td>
+                                        <td class="info">{{data.Price}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="book-btn">
+                        <button class="menubtn" (click)='addInCart(data)'>ADD CART
+                        </button>
+                    </div> -->
+                </div>
+                <div class="underline">
+                    <hr style="color: #595959">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

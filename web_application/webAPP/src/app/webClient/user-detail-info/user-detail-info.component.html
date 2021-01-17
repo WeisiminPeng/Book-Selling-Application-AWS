@@ -1,0 +1,72 @@
+<!-- <p>user-detail-info works!</p> -->
+<app-sidebar></app-sidebar>
+
+<div class="container">
+    <h2 class="section-title">Personal Info</h2>
+    <form [formGroup]="userInfoForm" novalidate (ngSubmit)="onSubmituserInfoForm(userInfoForm.value)">
+
+        <div>Firstname:
+            <mat-form-field class="full-width" appearance="fill">
+                <!-- <mat-label>Firstname</mat-label> -->
+                <input matInput maxlength="25" placeholder="Firstname" formControlName="firstname" required>
+                <mat-error *ngFor="let validation of account_validation_messages.firstname">
+                    <mat-error class="error-message"
+                        *ngIf="userInfoForm.get('firstname').hasError(validation.type) && (userInfoForm.get('firstname').invalid || userInfoForm.get('firstname').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>Lastname:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput maxlength="25" placeholder="Lastname" formControlName="lastname" required>
+                <mat-error *ngFor="let validation of account_validation_messages.lastname">
+                    <mat-error class="error-message"
+                        *ngIf="userInfoForm.get('lastname').hasError(validation.type) && (userInfoForm.get('lastname').invalid || userInfoForm.get('lastname').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>Email:
+            <mat-form-field class="full-width" appearance="fill">
+                <input disabled="disabled" matInput type="email" placeholder="Email Address" formControlName="email"
+                    required>
+                <!-- <mat-error *ngFor="let validation of account_validation_messages.email">
+                <mat-error class="error-message"
+                    *ngIf="userInfoForm.get('email').hasError(validation.type) && (userInfoForm.get('email').invalid || userInfoForm.get('email').touched)">
+                    {{validation.message}}</mat-error>
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+
+        <div>Password:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+                <mat-error *ngFor="let validation of account_validation_messages.password">
+                    <mat-error class="error-message"
+                        *ngIf="userInfoForm.get('password').hasError(validation.type) && (userInfoForm.get('password').invalid || userInfoForm.get('password').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- <mat-form-field class="full-width" appearance="fill">
+            <div>Current type: {{currentType}}</div>
+            <mat-select>
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userInfoForm.valid">
+            Modify
+        </button>
+
+    </form>
+
+    <!-- <button class="cancel-btn" color="primary" (click)="logout()">
+        Logout
+    </button> -->
+</div>

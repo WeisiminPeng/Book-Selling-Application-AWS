@@ -1,0 +1,35 @@
+<div class="sidebar-wrapper">
+
+    <ejs-sidebar #sidebar id="Siderbar" (created)="onCreated($event)" style="visibility: hidden"
+        [closeOnDocumentClick]="closeOnDocumentClick">
+        <div class="dock">
+            <div style="padding-top:30px; cursor: pointer" class="SignOut" (click)="signOut()">
+                <span class="text" title="SignOut">Sign Out</span>
+              </div>
+            <br><br><br><br><br>
+            <div class="sidebar-item schdule" [routerLink]="cart">
+                <span class="text" title="schdule">Cart</span>
+            </div>
+            <br>
+            <div class="sidebar-item appointment" [routerLink]="sellList">
+                <span class="text" title="appointment">Sell List</span>
+            </div>
+            <br>
+            <div class="sidebar-item info" [routerLink]="bookList">
+                <span class="text" title="message">Book List</span>
+            </div>
+            <br>
+            <div class="sidebar-item info" [routerLink]="personalInfo">
+                <span class="text" title="info">Personal Info</span>
+            </div>
+
+        </div>
+    </ejs-sidebar>
+
+    <div style="padding:5px" class="showsidebar">
+        <button ejs-button #SidebarBtn id="toggle" (click)="showSidebar()" class="menubtn">show</button>
+    </div>
+    <!-- <div style="padding-top:30px; cursor: pointer" class="SignOut">
+        <button ejs-button title="SignOut" (click)="signOut()" >Sign Out</button>
+    </div> -->
+</div>

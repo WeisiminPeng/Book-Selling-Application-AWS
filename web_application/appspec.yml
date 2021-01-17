@@ -1,0 +1,32 @@
+version: 0.0
+os: linux
+
+files:
+  - source: ./server/
+    destination: /home/ubuntu/webapp/server
+  - source: ./webAPP/dist/webAPP/
+    destination: /home/ubuntu/webapp/dist
+  - source: ./.htaccess
+    destination: /home/ubuntu/webapp/dist
+  - source: ./000-default.conf
+    destination: /home/ubuntu/webapp  
+  - source: ./cloudwatch-config.json
+    destination: /home/ubuntu/webapp
+
+hooks:
+  BeforeInstall:
+   - location: ./codedeploy/beforeInstall.sh
+     timeout: 180
+     runas: ubuntu
+  AfterInstall:
+   - location: ./codedeploy/afterInstall.sh
+     timeout: 180
+     runas: ubuntu
+  ApplicationStop: 
+   - location: ./codedeploy/stopApplication.sh
+     timeout: 180
+     runas: ubuntu
+  ApplicationStart:
+   - location: ./codedeploy/startApplication.sh
+     timeout: 180
+     runas: ubuntu
