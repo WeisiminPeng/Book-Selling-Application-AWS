@@ -1,0 +1,77 @@
+<!-- <p>register works!</p> -->
+<div class="container">
+    <h2 class="section-title">Register</h2>
+
+    <form [formGroup]="userRegisterForm" novalidate (ngSubmit)="onSubmitUserRegisterForm(userRegisterForm.value)">
+ 
+        <!-- <div>Firstname</div> -->
+        <mat-form-field class="full-width" appearance="fill">
+            <!-- <mat-label>Firstname</mat-label> -->
+            <input matInput maxlength="25" placeholder="Firstname" formControlName="firstname" required>
+            <mat-error *ngFor="let validation of account_validation_messages.firstname">
+                <mat-error class="error-message"
+                    *ngIf="userRegisterForm.get('firstname').hasError(validation.type) && (userRegisterForm.get('firstname').invalid || userRegisterForm.get('firstname').touched)">
+                    {{validation.message}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <input matInput maxlength="25" placeholder="Lastname" formControlName="lastname" required>
+            <mat-error *ngFor="let validation of account_validation_messages.lastname">
+                <mat-error class="error-message"
+                    *ngIf="userRegisterForm.get('lastname').hasError(validation.type) && (userRegisterForm.get('lastname').invalid || userRegisterForm.get('lastname').touched)">
+                    {{validation.message}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="email" placeholder="Email Address" formControlName="email" required>
+            <mat-error *ngFor="let validation of account_validation_messages.email">
+                <mat-error class="error-message"
+                    *ngIf="userRegisterForm.get('email').hasError(validation.type) && (userRegisterForm.get('email').invalid || userRegisterForm.get('email').touched)">
+                    {{validation.message}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+
+
+
+        <div formGroupName="matching_passwords" >
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+                <mat-error *ngFor="let validation of account_validation_messages.password">
+                    <mat-error class="error-message"
+                        *ngIf="userRegisterForm.get('matching_passwords').get('password').hasError(validation.type) && (userRegisterForm.get('matching_passwords').get('password').invalid || userRegisterForm.get('matching_passwords').get('password').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password" [errorStateMatcher]="parentErrorStateMatcher" required>
+                <mat-error *ngFor="let validation of account_validation_messages.confirm_password">
+                    <mat-error class="error-message"
+                        *ngIf="(userRegisterForm.get('matching_passwords').get('confirm_password').hasError(validation.type)|| userRegisterForm.get('matching_passwords').hasError(validation.type)) && (userRegisterForm.get('matching_passwords').get('confirm_password').invalid || userRegisterForm.get('matching_passwords').get('confirm_password').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- <mat-form-field class="full-width" appearance="fill">
+            <div>User Type</div>
+            <mat-select>
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit"
+            [disabled]="!userRegisterForm.valid">
+            Rigister
+        </button>
+
+    </form>
+    <!-- <button class="cancel-btn" color="primary"  type="submit">
+        Cancel
+    </button> -->
+
+</div>

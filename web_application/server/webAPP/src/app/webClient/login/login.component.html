@@ -1,0 +1,47 @@
+<!-- <p>login works!</p> -->
+
+<div class="container">
+    <h2 class="section-title">Login</h2>
+
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="onLoginForm(loginForm.value)">
+
+        <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="email" placeholder="Email Address" formControlName="email" required>
+            <mat-error *ngFor="let validation of account_validation_messages.email">
+                <mat-error class="error-message"
+                    *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').invalid || loginForm.get('email').touched)">
+                    {{validation.message}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+<br>
+
+
+        <!-- <div formGroupName="matching_passwords"> -->
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+                <mat-error *ngFor="let validation of account_validation_messages.password">
+                    <mat-error class="error-message"
+                        *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').invalid || loginForm.get('password').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+            <br>
+        <!-- </div> -->
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!loginForm.valid">
+            Login
+        </button>
+
+    </form>
+    <div>Don't have a account?
+        <button class="cancel-btn" color="primary" (click)="register()">
+            register
+        </button>
+    </div>
+    <div>Forget Password?
+        <button class="resetpsd-btn" color="primary" (click)="resetpsd()">
+            reset
+        </button>
+    </div>
+
+</div>

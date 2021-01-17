@@ -1,0 +1,117 @@
+<!-- <p>create-book works!</p> -->
+
+<div class="container">
+    <h2 class="section-title">Creta Book</h2>
+
+    <!-- <div>pictures:
+        <img [src]="url" height="200"> <br />
+        <input type='file' accept=".jpg,.png,.jpeg" (change)="onSelectFile($event)">
+    </div> -->
+
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+       
+        <div class="form-group">
+            <label for="file">File</label>
+            <input 
+                formControlName="file"
+                id="file" 
+                type="file" 
+                class="form-control"
+                multiple="" 
+                (change)="onFileChange($event)">
+            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                <div *ngIf="f.file.errors.required">File is required.</div>
+            </div>
+        </div>
+       
+        <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;"> <br/>
+           
+        <!-- <button class="btn btn-primary" type="submit">Submit</button> -->
+    </form>
+
+    <form [formGroup]="createBookForm" novalidate (ngSubmit)="onSubmitcreateBookForm(createBookForm.value)">
+
+        <div>ISBN:
+            <mat-form-field class="full-width" appearance="fill">
+                <!-- <mat-label>Firstname</mat-label> -->
+                <input matInput maxlength="25" placeholder="ISBN" formControlName="ISBN" required>
+                <mat-error *ngFor="let validation of book_validation_messages.ISBN">
+                    <mat-error class="error-message"
+                        *ngIf="createBookForm.get('ISBN').hasError(validation.type) && (createBookForm.get('ISBN').invalid || createBookForm.get('ISBN').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>Title:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput maxlength="100" placeholder="Title" formControlName="Title" required>
+                <mat-error *ngFor="let validation of  book_validation_messages.Title">
+                    <mat-error class="error-message"
+                        *ngIf="createBookForm.get('Title').hasError(validation.type) && (createBookForm.get('Title').invalid || createBookForm.get('Title').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>Authors:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput maxlength="100" placeholder="Authors" formControlName="Authors" required>
+                <mat-error *ngFor="let validation of  book_validation_messages.Authors">
+                    <mat-error class="error-message"
+                        *ngIf="createBookForm.get('Authors').hasError(validation.type) && (createBookForm.get('Authors').invalid || createBookForm.get('Authors').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div>Publication Date:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput [matDatepicker]="picker" placeholder="Publication Date"
+                    formControlName="PublicationDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngFor="let validation of book_validation_messages.PublicationDate">
+                    <mat-error class="error-message"
+                        *ngIf="createBookForm.get('PublicationDate').hasError(validation.type) && (createBookForm.get('PublicationDate').invalid || createBookForm.get('PublicationDate').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>Quantity:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput placeholder="Quantity" formControlName="Quantity" required>
+                <mat-error *ngFor="let validation of  book_validation_messages.Quantity">
+                    <mat-error class="error-message"
+                        *ngIf="createBookForm.get('Quantity').hasError(validation.type) && (createBookForm.get('Quantity').invalid || createBookForm.get('Quantity').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>Price:
+            <mat-form-field class="full-width" appearance="fill">
+                <input matInput placeholder="Price" formControlName="Price" required>
+                <mat-error *ngFor="let validation of  book_validation_messages.Price">
+                    <mat-error class="error-message"
+                        *ngIf="createBookForm.get('Price').hasError(validation.type) && (createBookForm.get('Price').invalid || createBookForm.get('Price').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div>
+            <button class="submit-btn" color="primary" mat-raised-button type="submit"
+                [disabled]="!createBookForm.valid">
+                Create
+            </button></div>
+
+    </form>
+    <button (click)="cancel()" class="cancel-btn" color="primary" type="submit">
+        Cancel
+    </button>
+
+</div>

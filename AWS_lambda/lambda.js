@@ -14,7 +14,7 @@ exports.handler = function (event, context, callback) {
   // const ses = new AWS.SES({ apiVersion: "2010-12-01" });
 
   var paramsGet = {
-    TableName: 'csye6225',
+    TableName: 'cloud',
     Key: {
       'id': { S: event.Records[0].Sns.Message }
     }
@@ -31,7 +31,7 @@ exports.handler = function (event, context, callback) {
         var token = uuid.v4();
         var ExpirationTime = Math.floor(new Date().getTime() / 1000 + 900);
         var paramsPut = {
-          TableName: 'csye6225',
+          TableName: 'cloud',
           Item: {
             'id': { S: event.Records[0].Sns.Message },
             'ExpirationTime': { N: ExpirationTime.toString() },
@@ -105,7 +105,7 @@ exports.handler = function (event, context, callback) {
             var tokenAgain = uuid.v4();;
             var ExpirationTime = Math.floor(new Date().getTime() / 1000 + 900);
             var paramsPutAgain = {
-              TableName: 'csye6225',
+              TableName: 'cloud',
               Item: {
                 'id': { S: event.Records[0].Sns.Message },
                 'ExpirationTime': { N: ExpirationTime.toString() },
@@ -166,7 +166,7 @@ exports.handler = function (event, context, callback) {
 
   // var ExpirationTime = Math.floor(new Date().getTime() / 1000 + 900);
   // var params = {
-  //   TableName: 'csye6225',
+  //   TableName: 'cloud',
   //   Item: {
   //     'id': { S: event.Records[0].Sns.Message },
   //     'ExpirationTime': { N: ExpirationTime.toString() },

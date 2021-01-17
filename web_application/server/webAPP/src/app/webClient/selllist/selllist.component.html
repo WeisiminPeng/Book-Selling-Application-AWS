@@ -1,0 +1,81 @@
+<!-- <p>selllist works!</p> -->
+<app-sidebar></app-sidebar>
+
+<!-- <main>
+    <section class="lowerHalf"> -->
+<div class="maincontent">
+    <div class="module-title">
+        <div class="title">Sell List</div>
+        <button (click)='createBook()' class="createbook-btn" color="primary" type="submit">
+            Create Book
+        </button>
+        <div class="underline">
+            <hr style="color: #595959">
+        </div>
+    </div>
+    <div class="specialization-detail-wrapper">
+        <div class='patient-schedule'>
+            <div class='book-item' *ngFor="let data of books">
+                <div class="book-detail">
+                    <div class="book-info">
+                        <div class="book-overview">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <!-- <div *ngFor='let image of data.imageStringList'> -->
+                                                <img *ngFor='let image of data.imageStringList' [src]="image"
+                                                    height="200px" width="150px" style="margin: 3px;"> <br />
+                                            <!-- </div> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Title:</td>
+                                        <td class="info">{{data.Title}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">ISBN:</td>
+                                        <td class="info">{{data.ISBN}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Authors:</td>
+                                        <td class="info">{{data.Authors}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">PublicationDate:</td>
+                                        <td class="info">
+                                            {{getPublicationDate(data.PublicationDate)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Quantity:</td>
+                                        <td class="info">{{data.Quantity}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lable">Price:</td>
+                                        <td class="info">{{data.Price}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="book-btn">
+                        <button class="menubtn" (click)='deleteBook(data)'>DELETE
+                        </button>
+                        <button class="menubtn" (click)='updateBook(data)'> UPDATE
+                        </button>
+                    </div>
+                    <div class="underline">
+                        <hr style="color: #595959">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- </section>
+</main> -->

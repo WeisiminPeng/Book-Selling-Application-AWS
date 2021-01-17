@@ -8,13 +8,13 @@
             "files": {
                 "collect_list": [
                     {
-                        "file_path": "/home/ubuntu/webapp/server/csye6225_webapp.log",
-                        "log_group_name": "csye6225",
+                        "file_path": "/home/ubuntu/webapp/server/cloud_webapp.log",
+                        "log_group_name": "cloud",
                         "log_stream_name": "webapp"
                     },
                     {
                         "file_path": "/home/ubuntu/webapp/server/server.log",
-                        "log_group_name": "csye6225",
+                        "log_group_name": "cloud",
                         "log_stream_name": "webapp-server"
                     }
                 ]
