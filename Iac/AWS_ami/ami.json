@@ -1,0 +1,64 @@
+{
+    "variables": {
+        "aws_access_key":"{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_key":"{{env `AWS_SECRET_ACCESS_KEY`}}",
+        "subnet_id": "",
+        "ssh_username": "ubuntu",
+        "source_ami": "{{env `Source_ami`}}",
+        "aws_region": "",
+        "ami_users": "{{env `ami_users`}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "source_ami": "{{user `source_ami`}}",
+            "instance_type": "t2.micro",
+            "subnet_id": "{{user `subnet_id`}}",
+            "ssh_username": "{{user `ssh_username`}}",
+            "ami_users": "{{user `ami_users`}}",
+            "ami_name": "{{env `ami_name`}}",
+            "ami_description": "{{env `ami_description`}}",
+            "launch_block_device_mappings":[
+                {
+                    "device_name": "/dev/sda1",
+                    "volume_size": 8,
+                    "volume_type": "gp2",
+                    "delete_on_termination": true
+                }
+            ],
+            "source_ami_filter": {
+                "owners": ["{{env `owners`}}"]
+              }
+        }
+    ],
+    "provisioners": [
+        {
+          "type": "shell",
+          "inline": [
+              "sudo apt clean",
+              "sudo apt update",
+              "sudo apt update",
+              "sudo apt install apache2 -y",
+              "curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -",
+              "sudo apt install nodejs -y",
+              "sudo apt install unzip",
+              "node --version",
+              "npm --version",
+              "sudo apt-get install ruby -y",
+              "sudo apt-get install wget -y",
+              "cd /home/ubuntu",
+              "sudo wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install  --debug",
+              "sudo chmod +x ./install",
+              "sudo ./install auto",
+              "sudo service codedeploy-agent start",
+              "sudo service codedeploy-agent status",
+              "sudo wget https://s3.us-east-1.amazonaws.com/amazoncloudwatch-agent-us-east-1/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb    --debug",
+              "sudo dpkg -i -E ./amazon-cloudwatch-agent.deb",
+              "sudo npm install pm2@latest -g"
+          ]
+        }
+      ]
+}
