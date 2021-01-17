@@ -1,6 +1,6 @@
 # Cloud-Computing
 
-![Architecture](https://raw.githubusercontent.com/WeisiminPeng/CloudComputing/main/architecture.png)
+![Architecture](https://raw.githubusercontent.com/WeisiminPeng/Cloud-Computing/main/architecture.png)
 
 •     Created user session using JWT for NodeJS back-end and LocalStorage for Angular front-end  
 •     Stored book pictures and deployment zip files into AWS S3, and built MySQL database via AWS RDS  
